@@ -9,19 +9,14 @@ placement probabilities and response latency.
 ## Watch the two players
 
 Same seed. Same 60-piece budget. Same 2x animation speed. Two different decision makers.
-Click a preview to open its full MP4 recording.
+Click a preview to watch the full gameplay video.
 
 | Jev / live API decisions | Offline / fixed board heuristic |
 | --- | --- |
 | [![Jev gameplay preview](media/jev-preview.gif)](media/jev.mp4) | [![Offline gameplay preview](media/offline-preview.gif)](media/offline.mp4) |
-| [Full recording — 1:15](media/jev.mp4) · [Screenshot](media/jev.png) | [Full recording — 0:29](media/offline.mp4) · [Screenshot](media/offline.png) |
+| [Full gameplay — 1:15](media/jev.mp4) · [Screenshot](media/jev.png) | [Full gameplay — 0:29](media/offline.mp4) · [Screenshot](media/offline.png) |
 
-These are recordings of the running application, not scripted gameplay or reconstructed
-model decisions. The MP4s preserve real API waiting time; the GIFs are eight-second excerpts
-at their original playback rate. Sound is not included. If your GitHub client does not
-play an MP4 inline, open its file page and use **View raw / Download**.
-
-### Recorded result
+### Demo results
 
 | Metric | Jev | Offline |
 | --- | ---: | ---: |
@@ -37,13 +32,12 @@ play an MP4 inline, open its file page and use **View raw / Download**.
 
 This is **one demonstration, not a benchmark of general superiority**. The score difference
 comes from the timing and grouping of line clears under level-scaled scoring. Neither run
-topped out. Model decisions and latency may vary on a repeat run. See
-[machine-readable recording metadata](media/demo-results.json).
+topped out. Model decisions and latency may vary on a repeat run.
 
 ## Run on Windows
 
-Prerequisites: Python 3.13+ and [uv](https://docs.astral.sh/uv/). FFmpeg is only
-required when recording. Clone this repository and open its directory:
+Prerequisites: Python 3.13+ and [uv](https://docs.astral.sh/uv/).
+Clone this repository and open its directory:
 
 ```powershell
 git clone https://github.com/chahero/tetris-jev.git
@@ -128,25 +122,3 @@ and `app.py` owns the UI, run lifecycle and logging. The game uses procedurally
 drawn blocks and system fonts, with no external game artwork or ROMs.
 
 To open the window without making API calls yet, use `--paused` and press Space when ready.
-
-## Record your own run
-
-Install FFmpeg and make sure `ffmpeg` is available on PATH. The recorder captures
-only this application's Pygame surface; other desktop windows and the `.env` file
-are not part of the recording. Output is H.264 MP4 at 1040 x 810, 30 FPS.
-
-```powershell
-# Live API run: at most 60 requests; billed by your provider.
-.\.venv\Scripts\tetris-jev.exe --policy jev --seed 42 --max-pieces 60 --speed 2 --exit-after --record media\jev.mp4
-
-# Offline comparison: no API calls.
-.\.venv\Scripts\tetris-jev.exe --policy heuristic --seed 42 --max-pieces 60 --speed 2 --exit-after --record media\offline.mp4
-```
-
-Recording overwrites the specified output path. `--headless` cannot be combined
-with `--record`; to record on a machine without a visible display, use SDL's
-dummy video driver while keeping the rendered-window mode.
-
-`.env`, the virtual environment and raw `artifacts/` logs are ignored by Git.
-The curated `media/` directory is versioned so previews work directly in the README.
-Sharing a private repository requires granting viewers repository access.

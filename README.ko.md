@@ -12,10 +12,7 @@
 | [![Jev 자동 플레이](media/jev-preview.gif)](media/jev.mp4) | [![오프라인 자동 플레이](media/offline-preview.gif)](media/offline.mp4) |
 | [전체 영상 1분 15초](media/jev.mp4) · [스크린샷](media/jev.png) | [전체 영상 29초](media/offline.mp4) · [스크린샷](media/offline.png) |
 
-두 영상은 **시드 42, 최대 60개 블록, 애니메이션 2배속**으로 직접 실행해
-녹화했습니다. Jev 응답을 기다리는 시간도 포함되므로 영상 길이는 다릅니다.
-GIF는 실제 영상의 8초 발췌본이며 추가 배속 편집은 하지 않았습니다.
-영상이 바로 재생되지 않으면 파일 페이지의 View raw 또는 Download를 이용하세요.
+두 모드 모두 **시드 42, 최대 60개 블록, 애니메이션 2배속**으로 플레이했습니다.
 
 | 결과 | Jev | 오프라인 |
 | --- | ---: | ---: |
@@ -44,7 +41,7 @@ GIF는 실제 영상의 8초 발췌본이며 추가 배속 편집은 하지 않�
 
 ## 실행
 
-Python 3.13 이상과 uv를 준비합니다. 영상 녹화에는 FFmpeg도 필요합니다.
+Python 3.13 이상과 uv를 준비합니다.
 
 ```powershell
 git clone https://github.com/chahero/tetris-jev.git
@@ -61,18 +58,3 @@ Copy-Item .env.example .env # 첫 설정에만 실행하세요.
 - Space: 일시정지·재개, R: 같은 시드로 재시작, +/-: 속도 순환, Esc: 종료
 - 기본 한도는 한 판 200개 블록입니다. `--max-pieces 60`으로 변경할 수 있습니다.
 - `--paused`를 붙이면 API를 호출하지 않고 일시정지 상태로 창을 엽니다.
-
-## 영상 녹화
-
-```powershell
-.\.venv\Scripts\tetris-jev.exe --policy jev --seed 42 --max-pieces 60 --speed 2 --exit-after --record media\jev.mp4
-.\.venv\Scripts\tetris-jev.exe --policy heuristic --seed 42 --max-pieces 60 --speed 2 --exit-after --record media\offline.mp4
-```
-
-지정된 영상 파일이 이미 있으면 덮어씁니다. 게임 내부 화면만 녹화하며
-다른 창이나 API 키 파일은 포함하지 않습니다. 요청 실패 시 자동으로 멈추며
-오프라인 정책으로 몰래 대체하지 않습니다.
-
-실행 로그는 `artifacts/`에 저장합니다. `.env`·가상환경·원본 로그는 Git에서
-제외하고, README에서 사용하는 영상·GIF·스크린샷만 `media/`에 포함합니다.
-비공개 저장소를 다른 사람에게 보여주려면 해당 사람에게 저장소 접근 권한이 필요합니다.
