@@ -1,0 +1,37 @@
+{
+  "seed": 42,
+  "max_pieces": 60,
+  "animation_speed": 2,
+  "recorded_date": "2026-09-18",
+  "note": "One-seed demonstration, not a general benchmark. Actual gameplay recording with inference wait time retained. SDK default Jev model, not pinned.",
+  "runs": {
+    "jev": {
+      "policy": "jev",
+      "pieces": 60,
+      "score": 3800,
+      "lines": 22,
+      "max_height": 3,
+      "holes": 1,
+      "api_calls": 60,
+      "mean_latency_ms": 770.4673266639778,
+      "end_reason": "Piece limit reached",
+      "duration_seconds": 74.833333,
+      "video_bytes": 1459494,
+      "video": "jev.mp4"
+    },
+    "offline": {
+      "policy": "heuristic",
+      "pieces": 60,
+      "score": 3700,
+      "lines": 22,
+      "max_height": 3,
+      "holes": 1,
+      "api_calls": 0,
+      "mean_latency_ms": null,
+      "end_reason": "Piece limit reached",
+      "duration_seconds": 28.633333,
+      "video_bytes": 851449,
+      "video": "offline.mp4"
+    }
+  }
+}
